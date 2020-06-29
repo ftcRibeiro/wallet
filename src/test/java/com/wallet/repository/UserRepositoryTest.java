@@ -28,7 +28,7 @@ public class UserRepositoryTest {
 
 
     @Autowired
-    UserRepository userRepository;
+    UserRepository repository;
 
     @Before
     public void setUp(){
@@ -37,12 +37,12 @@ public class UserRepositoryTest {
         u.setPassword(PSW);
         u.setEmail(EMAIL);
 
-        userRepository.save(u);
+        repository.save(u);
     }
 
     @After
     public void tearDown(){
-        userRepository.deleteAll();
+        repository.deleteAll();
     }
 
     @Test
@@ -50,15 +50,15 @@ public class UserRepositoryTest {
         User u = new User();
         u.setName("username");
         u.setPassword("password");
-        u.setEmail("user@email.com");
+        u.setEmail("username@email.com");
 
-        User response = userRepository.save(u);
+        User response = repository.save(u);
         assertNotNull(response);
     }
 
     @Test
     public void testFindByEmail(){
-        Optional<User> response = userRepository.findByEmail(EMAIL);
+        Optional<User> response = repository.findByEmail(EMAIL);
         assertTrue(response.isPresent());
         assertEquals(response.get().getEmail(),EMAIL);
     }
