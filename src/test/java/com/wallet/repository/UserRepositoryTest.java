@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserRepositoryTest {
 
     private static final String EMAIL = "user@email.com";
-    private static final String USER = "user";
+    private static final String NAME = "user";
     private static final String PSW = "password";
 
 
@@ -33,7 +33,7 @@ public class UserRepositoryTest {
     @Before
     public void setUp(){
         User u = new User();
-        u.setName(USER);
+        u.setName(NAME);
         u.setPassword(PSW);
         u.setEmail(EMAIL);
 

@@ -23,8 +23,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("test")
 public class UserServiceTest {
     private static final String EMAIL = "user@email.com";
-    private static final String USER = "user";
-    private static final String PSW = "password";
 
     @Autowired
     UserService service;
