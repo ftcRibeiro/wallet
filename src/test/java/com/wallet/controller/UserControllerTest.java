@@ -6,6 +6,7 @@ import com.wallet.dto.UserDTO;
 import com.wallet.entity.User;
 import com.wallet.service.UserService;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,7 @@ public class UserControllerTest {
     @Autowired
     MockMvc mvc;
     
+    @Test
     public void testSave() throws Exception{
         mvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload())
             .contentType(MediaType.APPLICATION_JSON)
@@ -40,6 +42,7 @@ public class UserControllerTest {
         .andExpect(status().isCreated());
     }
 
+    
     public User getMockUser(){
         User u = new User();
         u.setEmail(EMAIL);
@@ -49,6 +52,7 @@ public class UserControllerTest {
         return u;
     }
 
+    
     public String getJsonPayload() throws JsonProcessingException{
         UserDTO dto = new UserDTO();
         dto.setEmail(EMAIL);
