@@ -3,13 +3,11 @@ package com.wallet.repository;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.never;
 
 import java.util.Optional;
 
 import com.wallet.entity.User;
 
-import org.aspectj.apache.bcel.Repository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

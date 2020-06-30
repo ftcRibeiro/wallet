@@ -1,6 +1,8 @@
 package com.wallet.controller;
 
+import com.wallet.dto.UserDTO;
 import com.wallet.entity.User;
+import com.wallet.response.Response;
 import com.wallet.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ public class UserController {
         dto.setEmail(u.getEmail());
         dto.setName(u.getName());
         dto.setPassword(u.getPassword());
-        return u;
+        return dto;
     }
 
 }
