@@ -22,10 +22,11 @@ public class UserController {
     
     @Autowired
     UserService userService;
+    
 
     @PostMapping
     public ResponseEntity<Response<UserDTO>> create(@Valid @RequestBody UserDTO dto, BindingResult result){
-
+        
         Response<UserDTO> response = new Response<UserDTO>();
         
         User user = userService.save(this.dtoToEntity(dto));

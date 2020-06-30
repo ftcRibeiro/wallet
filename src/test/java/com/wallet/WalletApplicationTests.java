@@ -1,6 +1,5 @@
+
 package com.wallet;
-
-
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class WalletApplicationTests {
+public class WalletApplicationTests {
 
 	@Test
 	public void contextLoads() {
