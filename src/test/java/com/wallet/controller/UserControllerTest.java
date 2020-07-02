@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 public class UserControllerTest {
 
+    private static final Long ID = 1L;
     private static final String EMAIL = "user@email.com";
     private static final String NAME = "user";
     private static final String PSW = "password";
@@ -39,18 +41,34 @@ public class UserControllerTest {
     MockMvc mvc;
     
     @Test
-    public void testSave() throws Exception{
+    public void testSave() throws Exception {
 
         BDDMockito.given(service.save(Mockito.any(User.class))).willReturn(getMockUser());
-        mvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload())
+        mvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload(ID, NAME, EMAIL, PSW))
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isCreated());
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.data.id").value(ID))
+        .andExpect(jsonPath("$.data.name").value(NAME))
+        .andExpect(jsonPath("$.data.email").value(EMAIL))
+        .andExpect(jsonPath("$.data.password").value(PSW));
+
+        
     }
 
+    @Test
+    public void testSaveInvalidUser() throws JsonProcessingException, Exception {
+       
+		mvc.perform(MockMvcRequestBuilders.post(URL).content(getJsonPayload(ID, NAME, "email", PSW))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+		.andExpect(status().isBadRequest())
+		.andExpect(jsonPath("$.errors[0]").value("Email inválido"));
+    }
     
     public User getMockUser(){
         User u = new User();
+        u.setId(ID);
         u.setEmail(EMAIL);
         u.setName(NAME);
         u.setPassword(PSW);
@@ -59,11 +77,12 @@ public class UserControllerTest {
     }
 
     
-    public String getJsonPayload() throws JsonProcessingException{
+    public String getJsonPayload(Long id, String name, String email, String password) throws JsonProcessingException{
         UserDTO dto = new UserDTO();
-        dto.setEmail(EMAIL);
-        dto.setName(NAME);
-        dto.setPassword(PSW);
+        dto.setId(id);
+        dto.setEmail(email);
+        dto.setName(name);
+        dto.setPassword(password);
 
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(dto);
