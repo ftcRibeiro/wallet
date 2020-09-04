@@ -1,8 +1,10 @@
 package com.wallet.dto;
 
-import org.hibernate.validator.Length;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.Email;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -11,6 +13,7 @@ import lombok.Data;
 public class UserDTO {
  
     private Long id;
+    @NotEmpty
     @Email(message = "Email inválido")
     private String email;
     @Length(min = 3, max = 50, message = "O nome deve conter entre 3 e 50 caracteres")
