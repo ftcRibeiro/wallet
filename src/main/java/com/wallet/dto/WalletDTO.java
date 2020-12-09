@@ -11,9 +11,9 @@ import lombok.Data;
 @Data
 public class WalletDTO {
     private Long id;
-    @Length(min=3)
-    @NotNull
+    @Length(min=3, max = 50, message = "O nome deve conter entre 3 e 50 caracteres")
+    @NotNull(message = "O parâmetro name não pode ser nulo")
     private String name;
-    @NotNull
+    @NotNull(message = "O parâmetro value não pode ser nulo")
     private BigDecimal value;
 }

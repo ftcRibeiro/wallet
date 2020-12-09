@@ -1,5 +1,7 @@
 package com.wallet.controller;
 
+import javax.validation.Valid;
+
 import com.wallet.dto.WalletDTO;
 import com.wallet.entity.Wallet;
 import com.wallet.response.Response;
@@ -22,7 +24,7 @@ public class WalletController {
     private WalletService walletService;
 
     @PostMapping
-    public ResponseEntity<Response<WalletDTO>> create(@RequestBody WalletDTO dto, BindingResult result){
+    public ResponseEntity<Response<WalletDTO>> create(@Valid @RequestBody WalletDTO dto, BindingResult result){
 
         Response<WalletDTO> response = new Response<WalletDTO>();
         
