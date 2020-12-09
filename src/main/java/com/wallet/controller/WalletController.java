@@ -5,7 +5,7 @@ import javax.validation.Valid;
 import com.wallet.dto.WalletDTO;
 import com.wallet.entity.Wallet;
 import com.wallet.response.Response;
-import com.wallet.service.impl.WalletService;
+import com.wallet.service.WalletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
