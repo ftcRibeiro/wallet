@@ -7,6 +7,9 @@ import com.wallet.service.UserService;
 import com.wallet.util.Bcrypt;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.math.BigDecimal;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
