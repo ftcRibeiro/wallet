@@ -6,9 +6,10 @@ import com.wallet.response.Response;
 import com.wallet.service.UserService;
 import com.wallet.util.Bcrypt;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
-import java.math.BigDecimal;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Api(value = "UserController", description = "Operations pertaining to User")
 @RequestMapping("user")
 public class UserController {
     
@@ -28,6 +30,7 @@ public class UserController {
     UserService userService;
     
 
+    @ApiOperation(value = "Create a new User", response = Response.class)
     @PostMapping
     public ResponseEntity<Response<UserDTO>> create(@Valid @RequestBody UserDTO dto, BindingResult result){
         
